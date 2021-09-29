@@ -1,16 +1,25 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destroy]
-
+  before_action :authorize_request
   # GET /tasks
-  def index
-    @tasks = Task.all
+  # def index
+  #   @tasks = Task.all
 
-    render json: @tasks
-  end
+  #   render json: @tasks
+  # end
 
   # GET /tasks/1
   def show
-    render json: @task
+    @project = Project.find(@task.project_id)
+    if @current_user
+      if @project.user_id == @current_user.id
+        render json: @task
+      else
+        render json: @task.errors, status: :unauthorized
+      end
+    else
+      render json: @task.errors, status: :unauthorized
+    end
   end
 
   # POST /tasks

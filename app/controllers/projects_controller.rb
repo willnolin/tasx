@@ -1,16 +1,28 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :update, :destroy]
-
+  before_action :authorize_request
   # GET /projects
-  def index
-    @projects = Project.all
-
-    render json: @projects
-  end
+  # def index
+  #   @projects = Project.all
+  #   render json: @projects
+  # end
 
   # GET /projects/1
   def show
-    render json: @project
+    if @project.user_id == @current_user.id
+    render json: {project: @project, tasks: @project.tasks}
+    else
+      render json: @project.errors, status: :unauthorized
+    end
+  end
+
+  def show_user_projects 
+    if @current_user
+      @projects = Project.includes(:tasks).where(user_id: @current_user.id)
+      render json: @projects.to_json(include: :tasks)
+    else
+      render json: @projects.errors, status: :unprocessable_entity
+    end
   end
 
   # POST /projects
