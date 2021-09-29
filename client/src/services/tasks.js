@@ -1,7 +1,8 @@
 import api from './api'
 
 export const getProjectTasks = async (id) => {
-  const res = api.get(`/tasks${id}`);
+  const res = api.get(`/tasks/${id}`);
+  console.log(res)
   return res;
 }
 

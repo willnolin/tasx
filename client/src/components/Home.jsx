@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { getCurrentUserProjects } from '../services/projects';
 const Home = (props) => {
-  const {handleVerify, currentUser } = props;
+  const {handleLogout, handleVerify, currentUser } = props;
 
   const [projects, setProjects] = useState([])
+
   useEffect(() => {
     const fetchProjects = async () => {
       handleVerify();
@@ -47,7 +48,8 @@ const Home = (props) => {
         </div>
       <div className="container">
         {projects.map((project, index) => {
-        return <div className="card container m-3 p-2 is-flex is-flex-direction-row is-justify-content-space-around" key={index}>
+          return <Link to={`/projects/${project.id}`}>
+          <div className="card container m-3 p-2 is-flex is-flex-direction-row is-justify-content-space-around" key={index}>
           <div>
             <p className="content is-size-5 m-2">{project.name}</p>
             <div className={`content is-bordered has-background-${handleColor(project.status)} has-text-black p-1 m-2`}>{project.status}</div>
@@ -56,7 +58,8 @@ const Home = (props) => {
             <p className="content is-size-6 m-2">{`Tasks to complete: ${getIncompleteTaskList(project.tasks).length}`}</p>
             <p className="content is-size-6 m-2">{`Target date: ${project.target_date}`}</p>
           </div>
-       </div>
+            </div>
+            </Link>
       })}
         </div>
     </div>

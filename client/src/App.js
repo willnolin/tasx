@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
-import Home from "./components/Home"
+import MainContainer from "./components/MainContainer"
 import Login from './components/Login';
 import {
   loginUser,
@@ -43,9 +43,13 @@ function App() {
         <Route path="/login">
           <Login handleLogin={handleLogin}/>
         </Route>
-        
-        <Route exact path="/">
-            <Home handleLogout={handleLogout} handleVerify={handleVerify} currentUser={currentUser}/>
+          
+        <Route path="/">
+          <MainContainer
+            handleVerify={handleVerify}
+            handleLogout={handleLogout}
+            currentUser={currentUser}
+          />
         </Route>
       </Switch>
       </Layout>

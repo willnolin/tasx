@@ -6,9 +6,9 @@ export default function Layout(props) {
   //   props.handleVerify()
   // }, [])
   return (
-    <div className="">
+    <div className="layout-parent">
       <Header />
-      <div>
+      <div className="layout-children">
       {props.children}
       </div>
     </div>

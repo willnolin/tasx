@@ -36,19 +36,33 @@ puts "#{Project.count} projects created"
 @task1 = Task.create!(name: "sweep", target_date:20211117, description: "This is a task",
 priority: "low", status: "not-started", project: @project1)
 
-@task2 = Task.create!(name: "sweep", target_date:20211117, description: "This is a task",
+@task2 = Task.create!(name: "do dishes", target_date:20211117, description: "This is a task",
 priority: "low", status: "not-started", project: @project1)
 
-@task3 = Task.create!(name: "sweep", target_date:20211117, description: "This is a task",
+@task3 = Task.create!(name: "feed dog", target_date:20211117, description: "This is a task",
 priority: "low", status: "not-started", project: @project2)
 
-@task4 = Task.create!(name: "sweep", target_date:20211119, description: "This is a task",
+@task4 = Task.create!(name: "rake leaves", target_date:20211119, description: "This is a task",
 priority: "low", status: "not-started", project: @project1)
 
-@task5 = Task.create!(name: "sweep", target_date:20210117, description: "This is a task",
+@task5 = Task.create!(name: "party", target_date:20210117, description: "This is a task",
 priority: "low", status: "not-started", project: @project3)
 
-@task6 = Task.create!(name: "sweep", target_date:20211117, description: "This is a task",
+@task6 = Task.create!(name: "sweep again", target_date:20211117, description: "This is a task",
 priority: "low", status: "not-started", project: @project2)
 
 puts "#{Task.count} task(s) created"
+
+@sub_task1 = SubTask.create!(name: "find broom", estimated_time: 1, complete: false, task: @task1)
+
+@sub_task2 = SubTask.create!(name: "find dustpan", estimated_time: 2, complete: false, task: @task1)
+
+@sub_task3 = SubTask.create!(name: "buy soap", estimated_time: 2, complete: false, task: @task2)
+
+@sub_task4 = SubTask.create!(name: "sweep into dustpan", estimated_time: 0.5, complete: false, task: @task1)
+
+@sub_task5 = SubTask.create!(name: "sweep", estimated_time: 2, complete: false, task: @task3)
+
+@sub_task6 = SubTask.create!(name: "buy sponge", estimated_time: 2, complete: false, task: @task2)
+
+puts "#{SubTask.count} sub task(s) created"

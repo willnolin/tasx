@@ -2,10 +2,12 @@ import api from './api'
 
 export const getCurrentUserProjects = async () => {
   const res = api.get("/user_projects");
-  console.log(res)
   return res;
 }
-
+export const getOneProject = async (id) => {
+  const res = api.get(`/projects/${id}`)
+  return res;
+} 
 export const postProject = async (projectData) => {
   const project = api.post('/projects', { project: projectData });
   return project;

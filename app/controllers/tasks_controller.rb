@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     @project = Project.find(@task.project_id)
     if @current_user
       if @project.user_id == @current_user.id
-        render json: @task
+        render json: @task.to_json(include: :sub_tasks)
       else
         render json: @task.errors, status: :unauthorized
       end
