@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./css/TaskDetail.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProjectTasks } from "../services/tasks";
+import { useHistory } from "react-router";
 import SubTaskDisplay from "./SubTaskDisplay";
 
 const TaskDetail = (props) => {
@@ -9,8 +10,7 @@ const TaskDetail = (props) => {
   const { id } = useParams();
   const [task, setTask] = useState({});
   const [subTasks, setSubTasks] = useState([]);
-  // const [totalEstTime, setTotalEstTime] = useState(0)
-  // const [remaining, setRemaining] = useState(0)
+  const history = useHistory();
 
   const completedSubTasks = () => {
     const completed = subTasks.filter((st) => st.complete === true);
@@ -21,15 +21,9 @@ const TaskDetail = (props) => {
       return sum + parseFloat(time.estimated_time);
     }, 0);
     return total;
-    // setTotalEstTime(subTasks.reduce((sum, time) => {
-    //   return sum + parseFloat(time.estimated_time)
-    // },0))
   };
 
   const timeRemaining = () => {
-    // return subTasks.filter(st => st.complete === false).reduce((sum, time) => {
-    //   return sum + parseFloat(time.estimated_time)
-    // },0)
     const time = subTasks
       .filter((st) => st.complete === false)
       .reduce((sum, time) => {
@@ -46,16 +40,24 @@ const TaskDetail = (props) => {
       console.log("Task", res.data);
       setTask(res.data);
       setSubTasks(res.data.sub_tasks);
-      // totalTime()
-      // timeRemaining()
     };
     fetchTask();
   }, []);
 
   return (
-    <div className="section">
+    <div className="section mt-6">
       <div className="container is-flex is-justify-content-center">
-        <p className="title m-5">{task.name}</p>
+        <div className="back-btn">
+          <button
+            className="button is-small"
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            back to project
+          </button>
+        </div>
+        <p className="title">{task.name}</p>
       </div>
       <div
         className="box 
@@ -63,7 +65,8 @@ const TaskDetail = (props) => {
       is-flex-direction-column
       is-align-items-center
       is-justify-content-space-around
-      has-background-grey-light"
+      has-background-grey-light
+      mt-2"
       >
         <p className="subtitle has-text-black">Overview</p>
         <div className="dropdown">
@@ -91,8 +94,8 @@ const TaskDetail = (props) => {
               </div>
               <div className="container is-flex is-flex-direction-column">
                 <p className="content p-1">{`Total Sub-Tasks: ${subTasks.length}`}</p>
-                <p className="content p-1">{`Sub-Tasks Complete: ${completedSubTasks()}`}</p>
                 <p className="content p-1">{`Priority: ${task.priority}`}</p>
+                <p className="content p-1">{`Sub-Tasks Complete: ${completedSubTasks()}`}</p>
               </div>
             </div>
           </>

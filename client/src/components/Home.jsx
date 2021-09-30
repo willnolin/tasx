@@ -39,8 +39,8 @@ const Home = (props) => {
 
   return (
     <div className="container">
-      <div className="section pb-4 is-flex is-justify-content-center">
-        <h1 className="title mt-5">PROJECTS</h1>
+      <div className="section pb-4 mt-6 is-flex is-justify-content-center">
+        <h1 className="title">PROJECTS</h1>
       </div>
       {currentUser ? (
         <>

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import "./css/ProjectDetail.css";
+import { useHistory } from "react-router";
 import { Link, useParams } from "react-router-dom";
 import { getOneProject } from "../services/projects";
 function ProjectDetail(props) {
   const [project, setProject] = useState({});
   const { handleVerify, tasks, setTasks } = props;
   const { id } = useParams();
+  const history = useHistory();
+
   useEffect(() => {
     const fetchData = async () => {
       handleVerify();
@@ -36,7 +40,17 @@ function ProjectDetail(props) {
     <div>
       <div className="container">
         <div className="section pb-0 mt-6 is-flex is-justify-content-space-between">
-          <h1 className="title">{project.name}</h1>
+          <button
+            className="button is-small"
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            Back to projects
+          </button>
+          <div className="has-text-centered">
+            <h1 className="title mr-6">{project.name}</h1>
+          </div>
           <button className="button is-outlined is-link">Edit</button>
         </div>
         <div className="container">
@@ -44,7 +58,7 @@ function ProjectDetail(props) {
             return (
               <Link to={`/tasks/${task.id}`}>
                 <div
-                  className="card container m-3 p-2 is-flex is-flex-direction-row is-justify-content-space-around"
+                  className="card container m-3 p-2 px-6 is-flex is-flex-direction-row is-justify-content-space-between"
                   key={index}
                 >
                   <div>
@@ -65,6 +79,12 @@ function ProjectDetail(props) {
             );
           })}
         </div>
+        <Link to={`/task/${id}/new`}>
+          <div className="card container new-task m-3 has-background-grey-light is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+            <h2 className="content">Add New Task</h2>
+            <h1>+</h1>
+          </div>
+        </Link>
       </div>
     </div>
   );

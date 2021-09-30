@@ -10,7 +10,9 @@ export default function Header(props) {
     is-fixed-top has-shadow"
     >
       <div className="navbar-brand ">
-        <h1 className="title mt-2 ml-5">TASX</h1>
+        <Link to="/">
+          <h1 className="title mt-2 ml-5">TASX</h1>
+        </Link>
       </div>
       <div className="content nav-links m-5 is-flex is-justify-content-space-between">
         <Link to="/login">Login</Link>

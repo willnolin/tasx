@@ -6,6 +6,7 @@ import EditProject from "./EditProject";
 import TaskDetail from "./TaskDetail";
 import EditTask from "./EditTask";
 import NewProject from "./NewProject";
+import NewTask from "./NewTask";
 
 export default function MainContainer(props) {
   const { handleVerify, currentUser } = props;
@@ -16,6 +17,10 @@ export default function MainContainer(props) {
       <Switch>
         <Route path={`/tasks/:id/edit`}>
           <EditTask handleVerify={handleVerify} />
+        </Route>
+
+        <Route path={`/task/:project_id/new`}>
+          <NewTask handleVerify={handleVerify} currentUser={currentUser} />
         </Route>
 
         <Route path={`/tasks/:id`}>
