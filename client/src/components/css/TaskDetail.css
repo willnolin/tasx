@@ -1,10 +1,12 @@
 .task-desc {
   width: 80%;
   min-height: 50px;
+  min-width: 400px;
 }
 .task-details {
   width: 80%;
   min-height: 50px;
+  min-width: 400px;
 }
 .sub {
   margin: 0 auto;

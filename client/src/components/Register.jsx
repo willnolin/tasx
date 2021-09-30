@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./css/Login.css";
-const Login = (props) => {
-  const { handleLogin } = props;
+
+export default function Register(props) {
+  const { handleRegister } = props;
   const [formData, setFormData] = useState({
     username: "",
+    email: "",
     password: "",
+    password_confirmation: "",
   });
 
-  const { username, password } = formData;
+  const { username, email, password, password_confirmation } = formData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +25,7 @@ const Login = (props) => {
         className=""
         onSubmit={(e) => {
           e.preventDefault();
-          handleLogin(formData);
+          handleRegister(formData);
         }}
       >
         <div className="field">
@@ -40,6 +41,27 @@ const Login = (props) => {
             />
             <span className="icon is-small is-left">
               <i className="fas fa-user"></i>
+            </span>
+            <span className="icon is-small is-right">
+              <i className="fas fa-check"></i>
+            </span>
+          </div>
+          {/* <p className="help is-success">This username is available</p> */}
+        </div>
+
+        <div className="field">
+          <label className="label">Email</label>
+          <div className="control has-icons-left has-icons-right">
+            <input
+              className="input"
+              type="text"
+              name="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={handleChange}
+            />
+            <span className="icon is-small is-left">
+              <i className="fas fa-envelope"></i>
             </span>
             <span className="icon is-small is-right">
               <i className="fas fa-check"></i>
@@ -68,8 +90,28 @@ const Login = (props) => {
           </div>
           {/* <p className="help is-danger">Password must be 6 characters</p> */}
         </div>
+        <div className="field">
+          <label className="label">Confirm</label>
+          <div className="control has-icons-left has-icons-right">
+            <input
+              className="input"
+              type="password"
+              name="password_confirmation"
+              placeholder="Confirm Password"
+              value={password_confirmation}
+              onChange={handleChange}
+            />
+            <span className="icon is-small is-left">
+              <i className="fas fa-envelope"></i>
+            </span>
+            <span className="icon is-small is-right">
+              <i className="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+          {/* <p className="help is-danger">Password must be 6 characters</p> */}
+        </div>
 
-        <div className="field is-grouped is-flex is-justify-content-center">
+        <div className="field is-grouped">
           <div className="control">
             <button className="button is-link">Submit</button>
           </div>
@@ -77,24 +119,7 @@ const Login = (props) => {
             <button className="button is-link is-light">Cancel</button>
           </div>
         </div>
-        <div className="message is-flex is-flex-direction-row is-justify-content-space-around">
-          <p>Don't have an account?</p>{" "}
-          <Link className="has-text-link" to="/register">
-            Register here!
-          </Link>
-        </div>
       </form>
-      {/* <label htmlFor="username">
-        username:
-        </label>
-          <input type="text" name="username" value={username} onChange={handleChange} />
-        <label htmlFor="password">
-        password:
-        </label>
-          <input type="password" name="password" value={password} onChange={handleChange} />
-        <button>Submit</button> */}
     </div>
   );
-};
-
-export default Login;
+}

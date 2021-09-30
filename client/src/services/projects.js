@@ -9,6 +9,7 @@ export const getOneProject = async (id) => {
   return res;
 } 
 export const postProject = async (projectData) => {
+  console.log(projectData)
   const project = api.post('/projects', { project: projectData });
   return project;
 }

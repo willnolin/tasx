@@ -100,8 +100,8 @@ const TaskDetail = (props) => {
       </div>
       <SubTaskDisplay subTasks={subTasks} />
       <div className="container button-container is-flex is-justify-content-space-around ">
-        <button className="button is-info">Edit</button>
-        <button className="button is-light">Cancel</button>
+        <button className="button is-primary">Edit</button>
+        <button className="button is-danger">Delete</button>
       </div>
     </div>
   );
