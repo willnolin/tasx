@@ -9,7 +9,6 @@ import EditTask from './EditTask';
 export default function MainContainer(props) {
   const { handleLogout, handleVerify, currentUser } = props;
   const [tasks, setTasks] = useState([])
-  const [refresh, setRefresh] = useState(false);
 
   return (
     <div>

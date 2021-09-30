@@ -1,8 +1,15 @@
 .task-desc {
-  width: 50%;
+  width: 80%;
   min-height: 50px;
 }
 .task-details {
   width: 80%;
   min-height: 50px;
+}
+.sub {
+  margin: 0 auto;
+}
+
+.button-container {
+  width: 200px;
 }
